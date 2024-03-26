@@ -16,7 +16,7 @@ class Server(object):
             .'regularizer'  the regularize, such as "l1"
             .'lambd'        the regularize coefficient
             .'rho','alpha'  for ADMM
-            .'tau','eta'    for generate hessian
+            .'nu_hat','eta' for generate hessian
 
         """
         self.options = options
@@ -82,15 +82,15 @@ class Server(object):
         global_grad_dif /= len(local_grad_dif)
         active_num = len(local_grad_dif)
         # generate hessian matrix
-        if self.global_hessian == 'SR1':
+        if self.global_hessian == 'SR1': # could not work well, don't use this.
             B_k, B_0, u = Hessian_SR1(self.iteration, para_new, para_old, global_grad_dif, nu_hat=self.nu_hat,
                                       eta=self.eta)
             U = [u]
             U = torch.t(torch.vstack(U))
-        else:
+        else:  # the method we used in our paper.
             B_0 = self.B_0
             U = self.U
-            AssertionError(torch.linalg.matrix_rank(U) == active_num)
+            AssertionError(torch.linalg.matrix_rank(U) == active_num)   
         # calculate the proximal
         inner_para = self.update_inprox(global_direction)
         prox = self.regularizer.prox
