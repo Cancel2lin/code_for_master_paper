@@ -15,7 +15,6 @@ class Clients(object):
         options(required):
             .'alpha'    for local ADMM
             .'rho'      for local ADMM, in argument Lagrange function
-            .'hessian'  ={True,False}, do we need to build the oral hessian matrix
         """
         self.options = options
         self.train_data = DataLoader(DataSplit(dataset, idx), batch_size=local_batch, shuffle=True)
