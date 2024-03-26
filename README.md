@@ -3,7 +3,7 @@
 1. 文件说明
    
 1.1 data文件夹：
-	由于github无法上传大文件，则此处只有data空文件夹，对应的数据直接在FedProx提供的链接中下载。
+	由于github无法上传大文件，此处只有data空文件夹，对应的数据直接在FedProx提供的链接中下载。
  
  	如FEMNIST：https://drive.google.com/file/d/1tCEcJgRJ8NdRo11UJZR6WSKMNdmox4GC/view?usp=sharing
  
@@ -13,12 +13,14 @@
   
 1.2 FedDR、FedQuasiNewton（我们的方法）文件夹：
 
-	分别是FedDR和FedQuasiNewton的实现代码，其中client.py是节点运行的相关代码，server.py是中心端服务器的运行的相关代码，synFedDR.py、FedQuasiNewton.py则是将节点和中心端服务器的功能串起来。\\
+	分别是FedDR和FedQuasiNewton的实现代码，其中client.py是节点运行的相关代码，server.py是中心端服务器的运行的相关代码，synFedDR.py、FedQuasiNewton.py则是将节点和中心端服务器的功能串起来。
+ 
  	input.py是算法输入的具体参数。
   
 1.3 regularizer文件夹:
 
 	存放的是$\ell_1$正则项的相关计算，如其近端的显式解，近端的偏导数等；proximal_operator.py是FedQuasiNewton中具体求解变尺度近端的一些函数。
+
 
 1.4 utils文件夹：
 
@@ -65,10 +67,10 @@
 	# 节点ADMM中的参数，alpha是用来保证生成Hessian矩阵正定的参数，即在Hessain矩阵的基础上加上alpha倍的单位阵。rho是ADMM的参数
 	'alpha': 1, 
 	'rho': 5,  
-	# hessian矩阵相关参数，global_hessian默认为None，此时中心端会按算法的方式生成全局Hessian矩阵，若取'SR1'，则会直接在中心端生成一个SR1矩阵的近似全局Hessian（效果不佳）
-	# nu_hat 和 eta 是无记忆SR1中的参数
-	'global_hessian': None,
-	'nu_hat': 10, # 
+	# hessian矩阵相关参数，global_hessian默认为None，此时中心端会按算法的方式生成全局Hessian矩阵，若取'SR1'，则会直接在中心端生成一个SR1矩阵的近似全局Hessian（效果不佳，已废弃不用）
+	# nu_hat 和 eta 是无记忆SR1中的参数，与算法中的参数对应
+	'global_hessian': None,   —— 默认为None即可，不用改
+	'nu_hat': 10, # 	  
 	'eta': 0.99,
 	##### FedDR 特有的 #################
 	'batch_size': 50，批量随机梯度下降的batch大小
