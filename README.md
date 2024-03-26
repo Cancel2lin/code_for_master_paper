@@ -3,11 +3,11 @@
 1. 文件说明
    
 1.1 data文件夹：
-	由于github无法上传大文件，此处只有data空文件夹，对应的数据直接在FedProx提供的链接中下载。
+	由于github无法上传大文件，此处只有data空文件夹，对应的数据直接在FedProx提供的链接中下载。数据是json格式的。
  
  	如FEMNIST：https://drive.google.com/file/d/1tCEcJgRJ8NdRo11UJZR6WSKMNdmox4GC/view?usp=sharing
  
- 	举例：如MNIST数据，其文件存储路径为：训练集：data/mnist/data/train/xxx    测试集：data/mnist/data/test/xxx
+ 	举例：如MNIST数据，其文件存储路径为：训练集：data/mnist/data/train/xxx.json    测试集：data/mnist/data/test/xxx.json
 
 	存放了synthetic_iid, synthetic_0_0, synthetic_0.5_0.5, synthetic_1_1, mnist, femnist数据，均是FedProx文献处理好的数据。
   
